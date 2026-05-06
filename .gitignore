@@ -1,0 +1,12 @@
+# Variáveis de ambiente — nunca suba este arquivo para o GitHub
+.env
+
+# Dependências
+node_modules/
+
+# Vercel
+.vercel/
+
+# Sistema
+.DS_Store
+Thumbs.db

@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ===== RESET & VARIÁVEIS ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg:           #09090b;
+    --bg-surface:   #141419;
+    --bg-hover:     #1c1c23;
+    --border:       #27272a;
+    --border-focus: #00BFFF;
+    --text:         #e4e4e7;
+    --text-muted:   #71717a;
+    --text-heading: #fafafa;
+    --accent:       #00BFFF;
+    --accent-dark:  #0099cc;
+    --accent-glow:  rgba(0, 191, 255, 0.25);
+    --error:        #f87171;
+    --error-bg:     rgba(248, 113, 113, 0.1);
+    --radius:       12px;
+    --transition:   0.2s ease;
+    --font:         'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 48px 20px;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+/* ===== HERO ===== */
+.hero {
+    text-align: center;
+    animation: fadeUp 0.5s ease both;
+}
+
+.hero__title {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: var(--accent);
+}
+
+.hero__subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* ===== INPUT SECTION ===== */
+.input-section {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.prompt-input {
+    resize: none;
+    width: 100%;
+    padding: 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-heading);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.6;
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.prompt-input::placeholder {
+    color: var(--text-muted);
+}
+
+.prompt-input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ===== BOTÃO GERAR ===== */
+.btn-gerar {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 0 0 0 var(--accent-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-gerar:hover:not(:disabled) {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+.btn-gerar:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-gerar:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* ===== SPINNER ===== */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(0,0,0,0.3);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== ERRO ===== */
+.erro {
+    width: 100%;
+    max-width: 680px;
+    background: var(--error-bg);
+    border: 1px solid var(--error);
+    border-radius: var(--radius);
+    color: var(--error);
+    padding: 14px 16px;
+    font-size: 14px;
+    animation: fadeUp 0.3s ease both;
+}
+
+/* ===== RESULTADO ===== */
+.resultado {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    animation: fadeUp 0.4s ease both;
+}
+
+.resultado__painel {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.resultado__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-hover);
+}
+
+.resultado__titulo {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* ===== BOTÃO COPIAR ===== */
+.btn-copiar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.btn-copiar:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.btn-copiar--copiado {
+    color: #4ade80 !important;
+    border-color: #4ade80 !important;
+}
+
+/* ===== BLOCO DE CÓDIGO ===== */
+.bloco-codigo {
+    padding: 16px;
+    font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    line-height: 1.8;
+    overflow: auto;
+    flex: 1;
+    min-height: 350px;
+    max-height: 450px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ===== PREVIEW ===== */
+.preview {
+    flex: 1;
+    min-height: 350px;
+    max-height: 450px;
+    border: none;
+    width: 100%;
+    background: #fff;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeUp {
+    from { transform: translateY(16px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 720px) {
+    body { padding: 32px 16px; }
+
+    .resultado {
+        grid-template-columns: 1fr;
+    }
+
+    .bloco-codigo,
+    .preview {
+        min-height: 260px;
+        max-height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__title { font-size: 26px; }
+    body { padding: 24px 14px; }
+}

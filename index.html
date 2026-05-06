@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>DevClub — Gerador de IA</title>
+</head>
+<body>
+
+    <main class="container">
+
+        <header class="hero">
+            <h1 class="hero__title">CSS Gerador <span class="highlight">com IA</span> ⚡️</h1>
+            <p class="hero__subtitle">Descreva o que você imagina e veja a mágica acontecer</p>
+        </header>
+
+        <section class="input-section" aria-label="Entrada do prompt">
+            <textarea
+                id="prompt"
+                class="prompt-input"
+                rows="4"
+                placeholder="Ex: Bola azul pingando, botão neon pulsando, card com glassmorphism..."
+                aria-label="Descreva o que você quer gerar"
+            ></textarea>
+
+            <button id="btn-gerar" class="btn-gerar" aria-live="polite">
+                <span class="btn-gerar__text">Gerar Código ⚡️</span>
+                <span class="btn-gerar__loading" aria-hidden="true" hidden>
+                    <span class="spinner"></span> Gerando...
+                </span>
+            </button>
+        </section>
+
+        <div id="erro" class="erro" role="alert" hidden></div>
+
+        <section class="resultado" id="resultado" aria-label="Resultado gerado" hidden>
+            <div class="resultado__painel">
+                <div class="resultado__header">
+                    <h2 class="resultado__titulo">Código</h2>
+                    <button class="btn-copiar" id="btn-copiar" title="Copiar código" aria-label="Copiar código">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copiar</span>
+                    </button>
+                </div>
+                <pre class="bloco-codigo" id="bloco-codigo"></pre>
+            </div>
+
+            <div class="resultado__painel">
+                <div class="resultado__header">
+                    <h2 class="resultado__titulo">Preview</h2>
+                </div>
+                <iframe class="preview" id="preview" title="Preview do código gerado" sandbox="allow-scripts"></iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="settings.js"></script>
+</body>
+</html>
